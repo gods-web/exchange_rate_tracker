@@ -39,8 +39,8 @@ def save_to_json(record):
         if os.path.exists(path):
             with open("history.json", "r") as f:
                 history = json.load(f)
-        if record not in history:
-            history.append(record)
+            if record not in history:
+                history.append(record)
     
             with open("history.json", "w") as f:
                     json.dump(history,f, indent=4)
