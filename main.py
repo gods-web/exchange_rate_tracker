@@ -51,7 +51,7 @@ def save_to_json(record):
 
             
 def main():
-      naira_value = convert_from_USD_to_NGN(1)
+      naira_value = convert_from_USD_to_NGN()
       save_to_json(naira_value)
 
 main()
