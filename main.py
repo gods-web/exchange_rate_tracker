@@ -7,13 +7,13 @@ import os
 url = ("https://open.er-api.com/v6/latest/usd")
     
     
-def convert_from_USD_to_NGN(USD):
+def convert_from_USD_to_NGN():
     try:
         
             
             response = requests.get(url)
             data = response.json()
-            print(data.keys())
+        
                 
                 
             rate = data["rates"]["NGN"]
@@ -51,7 +51,7 @@ def save_to_json(record):
 
             
 def main():
-      naira_value = convert_from_USD_to_NGN(10)
+      naira_value = convert_from_USD_to_NGN()
       save_to_json(naira_value)
 
 main()
