@@ -31,7 +31,7 @@ jobs:
 
       - name: save data to json file
         run: |
-          git config user.name 
+          git config user.name "Godswill"
           git add exchange_rate.json 
           git commit -m "update exchange rate" 
           git push
