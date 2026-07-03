@@ -34,19 +34,19 @@ def convert_from_USD_to_NGN():
         
 def save_to_json(record):    
         folder = os.getcwd()
-        path = os.path.join(folder, "history.json")
+        path = os.path.join(folder, "exchange_rate.json")
 
         if os.path.exists(path):
-            with open("history.json", "r") as f:
+            with open("exchange_rate.json", "r") as f:
                 history = json.load(f)
             if record not in history:
                 history.append(record)
     
-            with open("history.json", "w") as f:
+            with open("exchange_rate.json", "w") as f:
                     json.dump(history,f, indent=4)
 
         else:
-            with open("history.json", "w") as f:
+            with open("exchange_rate.json", "w") as f:
                     json.dump([record],f, indent=4)
 
             

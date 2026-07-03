@@ -1,5 +1,9 @@
 name: Update Exchange Rates
 
+permissions:
+  contents: write
+
+
 on:
   workflow_dispatch:
 
@@ -10,6 +14,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -23,3 +28,12 @@ jobs:
 
       - name: Run Exchange Rate Tracker
         run: python main.py
+
+      - name: save data to json file
+        run: |
+        git config user.name \
+        git add exchange_rate.json \
+        git commit -m "update exchange rate" \
+        git push
+
+
