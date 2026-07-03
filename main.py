@@ -1,8 +1,10 @@
 import requests
-import json 
-import datetime
+import json
+from datetime import datetime 
 import os
-from datetime import datetime
+
+
+
 
 
 
@@ -15,45 +17,49 @@ def convert_from_USD_to_NGN(USD):
             
             response = requests.get(url)
             data = response.json()
+            print(data.keys())
                 
                 
             rate = data["rates"]["NGN"]
-            last_update = data["time_last_update_utc"]
-            NGN = rate * USD
-            current_time = datetime.now()
+
+            current_time = data["time_last_update_utc"]
+            current_time = datetime.striptime(current_time, "%a, %d %b %Y %H:%M:%S %z")
 
 
-            print("Time:", current_time)
+        
                 
 
-            record = {"usd": USD,
-                        "ngn": NGN,
+            record = {"currency": "NGN",
                         "rate": rate,
-                        "last_rate_update": last_update,
-                        "time": str(current_time)
+                        "date": current_time.date().isoformat()
                         }
-                
-            os.path.exists("history.json")
-            with open("history.json", "w") as f:
-                json.dump([], f)
-    
+            print(record)
+            return record
+    except Exception as e:
+        print(f"An error occurred while running this,{e}")
+        
+def save_to_json(record):    
+        folder = os.getcwd()
+        path = os.path.join(folder, "history.json")
 
+        if os.path.exists(path):
             with open("history.json", "r") as f:
-                        history = json.load(f)
-                        history.append(record)
-
-            with open("history.json", "w")as f:
+                history = json.load(f)
+        if record not in history:
+            history.append(record)
+    
+            with open("history.json", "w") as f:
                     json.dump(history,f, indent=4)
 
+        else:
+            with open("history.json", "w") as f:
+                    json.dump([record],f, indent=4)
+
+            
+def main():
+      naira_value = convert_from_USD_to_NGN(10)
+      save_to_json(naira_value)
+
+main()
                 
-            return NGN,last_update
-    except requests.exceptions.RequestException as e:
-        print("An error occured while fetching your request", e)
-        return None
-    
-    
-output = convert_from_USD_to_NGN(10)
-print(output)
-
-
-
+   
