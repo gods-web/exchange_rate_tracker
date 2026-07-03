@@ -19,7 +19,7 @@ def convert_from_USD_to_NGN():
             rate = data["rates"]["NGN"]
 
             current_time = data["time_last_update_utc"]
-            current_time = datetime.striptime(current_time, "%a, %d %b %Y %H:%M:%S %z")
+            current_time = datetime.strptime(current_time, "%a, %d %b %Y %H:%M:%S %z")
 
 
         
