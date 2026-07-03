@@ -4,10 +4,6 @@ from datetime import datetime
 import os
 
 
-
-
-
-
 url = ("https://open.er-api.com/v6/latest/usd")
     
     
@@ -27,8 +23,6 @@ def convert_from_USD_to_NGN(USD):
 
 
         
-                
-
             record = {"currency": "NGN",
                         "rate": rate,
                         "date": current_time.date().isoformat()
