@@ -2,6 +2,27 @@ import requests
 import json
 from datetime import datetime 
 import os
+import smtplib
+
+from dotenv import load_dotenv
+load_dotenv
+from email.message import EmailMessage
+load_dotenv()
+
+def send_email(subject, body):
+    email = EmailMessage()
+    email.set_content(body)
+    email['subject'] = subject
+    sender = os.environ['EMAIL_ADDRESS']
+    receiver = os.environ['RECEIVER_EMAIL']
+    password = os.environ['EMAIL_PASSWORD']
+    email['from'] = sender
+    email['to'] = receiver
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(sender, password)
+    server.send_message(email)
+    server.quit()
 
 
 url = ("https://open.er-api.com/v6/latest/usd")
@@ -53,6 +74,7 @@ def save_to_json(record):
 def main():
       naira_value = convert_from_USD_to_NGN()
       save_to_json(naira_value)
+      send_email("convert_from_USD_to_NGN",f"{naira_value}")
 
 main()
                 
