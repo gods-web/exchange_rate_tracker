@@ -32,7 +32,7 @@ jobs:
       - name: Run Exchange Rate Tracker
         env:
           EMAIL: ${{ secrets.EMAIL }}
-          PAsSWORD: ${{ secrets.PASSWORD }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: python main.py
 
       - name: save data to json file
