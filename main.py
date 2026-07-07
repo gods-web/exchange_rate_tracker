@@ -13,11 +13,11 @@ def send_email(subject, body):
     email = EmailMessage()
     email.set_content(body)
     email['subject'] = subject
-    sender = os.environ['EMAIL_ADDRESS']
-    receiver = os.environ['RECEIVER_EMAIL']
-    password = os.environ['EMAIL_PASSWORD']
+    sender = os.getenv('EMAIL_ADDRESS')
+    receiver = os.getenv('RECEIVER_EMAIL')
+    password = os.getenv('EMAIL_PASSWORD')
     email['from'] = sender
-    email['to'] = receiver
+    email['To'] = receiver
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
     server.login(sender, password)
