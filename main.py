@@ -20,6 +20,7 @@ def send_email(subject, body):
     email['To'] = receiver
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
+    
     server.login(sender, password)
     server.send_message(email)
     server.quit()
