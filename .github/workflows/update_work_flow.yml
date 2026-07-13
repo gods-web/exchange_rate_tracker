@@ -36,11 +36,17 @@ jobs:
           RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
         run: python main.py
 
-      - name: save data to json file
-        run: |
-          git config user.name "Godswill"
-          git add exchange_rate.json 
-          git commit -m "update exchange rate" 
-          git push
+      - name: Save data to JSON file
+  run: |
+    git config user.name "Godswill"
+    git config user.email "github-actions[bot]@users.noreply.github.com"
 
+    git add exchange_rate.json
+
+    if git diff --cached --quiet; then
+      echo "No changes to commit."
+    else
+      git commit -m "Update exchange rate"
+      git push
+    fi
 
