@@ -45,10 +45,10 @@ def convert_from_USD_to_NGN():
 
         
             record = {"currency": "NGN",
-                        "rate": rate,
-                        "date": current_time.date().isoformat()
-                        }
-            print(record)
+                    "rate": rate,
+                    "date": current_time.date().isoformat()
+                    }
+        
             return record
     except Exception as e:
         print(f"An error occurred while running this,{e}")
