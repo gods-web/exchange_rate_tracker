@@ -1,4 +1,4 @@
- Python Exchange Rate Automation Project
+## PYTHON EXCHANGE_RATE_TRACKER AUTOMATION PROJECT ##
 
 This is a Python automation project that fetches the exchange rate for US Dollars (USD) to Nigerian Naira (NGN) and saves the results to a JSON file.
 
@@ -36,10 +36,51 @@ To make the email feature work safely, I created a new email account specificall
 * **JSON**
 * **Exchange Rate API**
 
----
+## 🛠️ How to Run It Locally
 
-### 🛠️ How to Run It Locally
+1. Clone the repository:
 
-1. Clone this repository.
-2. Install any required libraries (like `requests` if you are using it).
-3. Run the main Python script:
+```bash
+git clone https://github.com/your-username/Exchange_Rate_Tracker.git
+```
+
+2. Navigate into the project folder:
+
+```bash
+cd Exchange_Rate_Tracker
+```
+
+3. (Optional but recommended) Create a virtual environment:
+
+**Windows**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**macOS/Linux**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+4. Install all required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+5. Create a `.env` file in the project root and add your email credentials:
+
+```env
+EMAIL_ADDRESS=your_email@gmail.com
+EMAIL_PASSWORD=your_app_password
+RECEIVER_EMAIL=receiver@gmail.com
+```
+
+6. Run the application:
+
+```bash
+python main.py
+
+
