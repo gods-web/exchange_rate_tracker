@@ -3,7 +3,6 @@ import json
 from datetime import datetime 
 import os
 import smtplib
-
 from dotenv import load_dotenv
 load_dotenv
 from email.message import EmailMessage
@@ -24,26 +23,17 @@ def send_email(subject, body):
     server.send_message(email)
     server.quit()
 
-
 url = ("https://open.er-api.com/v6/latest/usd")
-    
-    
+
 def convert_from_USD_to_NGN():
     try:
-        
-            
             response = requests.get(url)
             data = response.json()
-        
-                
-                
             rate = data["rates"]["NGN"]
 
             current_time = data["time_last_update_utc"]
             current_time = datetime.strptime(current_time, "%a, %d %b %Y %H:%M:%S %z")
-
-
-        
+            
             record = {"currency": "NGN",
                     "rate": rate,
                     "date": current_time.date().isoformat()
@@ -65,12 +55,10 @@ def save_to_json(record):
     
             with open("exchange_rate.json", "w") as f:
                     json.dump(history,f, indent=4)
-
         else:
             with open("exchange_rate.json", "w") as f:
                     json.dump([record],f, indent=4)
 
-            
 def main():
       naira_value = convert_from_USD_to_NGN()
       save_to_json(naira_value)
